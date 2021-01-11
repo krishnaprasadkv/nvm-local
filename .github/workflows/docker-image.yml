@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to Docker Hub
+      run: docker login --username "${{ secrets.Docker_username }}" --password "${{ secrets.Docker_password }}"
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag krishnaprasadkv/nvm
+    - name: Push the Docker Image 
+      run: docker push krishnaprasadkv/nvm
+      env:
+       CI: true
