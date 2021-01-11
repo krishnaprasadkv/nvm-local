@@ -7,6 +7,8 @@ RUN apt-get install -y curl \
         vim \
         && apt-get clean
 
+Run mkdir -p /usr/local/nvm
+
 # nvm environment variables
 ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 6.11.3
